@@ -5,14 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
     
     <!-- PWA Meta Tags -->
-    <!-- Favicon & Icons -->
-<link rel="icon" type="image/png" sizes="96x96" href="favicon-96x96.png">
-<link rel="apple-touch-icon" sizes="180x180" href="favicon-96x96.png">
-<link rel="apple-touch-icon" sizes="152x152" href="favicon-96x96.png">
-<link rel="apple-touch-icon" sizes="120x120" href="favicon-96x96.png">
-<link rel="shortcut icon" href="favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="favicon-96x96.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="favicon-96x96.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="favicon-96x96.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="favicon-96x96.png">
+    <link rel="shortcut icon" href="favicon-96x96.png">
     
-    <title>Builder Pro - Project Management System</title>
+    <title>Builder Pro - Project Management System (DEMO)</title>
     
     <style>
         * {
@@ -81,7 +80,7 @@
             transition: background 0.3s;
         }
 
-        /* Floating text effect - adjustable elevation */
+        /* Floating text effect */
         body.text-float-enabled, 
         body.text-float-enabled button, 
         body.text-float-enabled input, 
@@ -144,7 +143,7 @@
             transform: translateZ(var(--text-elevation));
         }
 
-        /* Glass-morphism transparency effect */
+        /* Glass-morphism effect */
         body.glass-enabled .header,
         body.glass-enabled .nav,
         body.glass-enabled .stats-container,
@@ -205,7 +204,7 @@
             to { transform: translateX(-50%) rotate(360deg); }
         }
 
-        /* Neumorphic Header */
+        /* Header */
         .header {
             padding: 20px 32px;
             background: var(--bg);
@@ -265,7 +264,6 @@
             box-shadow: 
                 5px 5px 10px var(--shadow-dark),
                 -5px -5px 10px var(--shadow-light);
-            position: relative;
         }
 
         .neuro-btn:hover {
@@ -278,44 +276,7 @@
                 inset -3px -3px 6px var(--shadow-light);
         }
 
-        .sync-indicator {
-            position: absolute;
-            top: -2px;
-            right: -2px;
-            width: 10px;
-            height: 10px;
-            border-radius: 50%;
-            background: var(--success);
-            box-shadow: 0 0 8px var(--success);
-        }
-
-        .sync-indicator.syncing {
-            background: var(--warning);
-            animation: pulse 1s infinite;
-        }
-
-        @keyframes pulse {
-            0%, 100% { opacity: 1; transform: scale(1); }
-            50% { opacity: 0.5; transform: scale(0.9); }
-        }
-
-        /* Sync Status Bar */
-        .sync-status-bar {
-            padding: 8px 32px;
-            background: var(--bg);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 16px;
-            font-size: calc(11px * var(--font-scale));
-            color: var(--text-secondary);
-            font-weight: 600;
-            box-shadow: 
-                inset 2px 2px 4px var(--shadow-dark),
-                inset -2px -2px 4px var(--shadow-light);
-        }
-
-        /* Soft Navigation */
+        /* Navigation */
         .nav {
             padding: 20px 32px;
             background: var(--bg);
@@ -360,7 +321,7 @@
                 -5px -5px 10px var(--shadow-light);
         }
 
-        /* Embossed Stats */
+        /* Stats */
         .stats-container {
             padding: 32px;
             max-width: 1400px;
@@ -457,7 +418,7 @@
             padding-bottom: 100px;
         }
 
-        /* Soft Project Card */
+        /* Project Card */
         .project-card {
             background: var(--bg);
             border-radius: 32px;
@@ -618,7 +579,7 @@
             gap: 6px;
         }
 
-        /* Tactile Buttons */
+        /* Buttons */
         .btn {
             padding: 14px 28px;
             background: var(--bg);
@@ -702,227 +663,6 @@
         .icon-btn:disabled {
             opacity: 0.5;
             cursor: not-allowed;
-        }
-
-        /* Gantt Chart */
-        .gantt-container {
-            background: var(--bg);
-            border-radius: 24px;
-            padding: 24px;
-            box-shadow: 
-                8px 8px 16px var(--shadow-dark),
-                -8px -8px 16px var(--shadow-light);
-            overflow-x: auto;
-            margin-bottom: 24px;
-        }
-
-        .gantt-timeline-header {
-            display: flex;
-            border-bottom: 2px solid var(--bg);
-            padding-bottom: 12px;
-            margin-bottom: 16px;
-            box-shadow: 0 2px 0 var(--shadow-dark);
-        }
-
-        .gantt-timeline-months {
-            margin-left: 150px;
-            display: flex;
-            flex: 1;
-            gap: 2px;
-        }
-
-        .gantt-month {
-            flex: 1;
-            text-align: center;
-            font-size: calc(10px * var(--font-scale));
-            color: var(--text-secondary);
-            font-weight: 700;
-            padding: 8px 4px;
-            background: var(--bg);
-            border-radius: 8px;
-            box-shadow: 
-                inset 2px 2px 4px var(--shadow-dark),
-                inset -2px -2px 4px var(--shadow-light);
-        }
-
-        .gantt-row {
-            display: flex;
-            align-items: center;
-            margin-bottom: 12px;
-            min-height: 48px;
-        }
-
-        .gantt-label {
-            width: 150px;
-            font-size: calc(12px * var(--font-scale));
-            font-weight: 700;
-            color: var(--text-primary);
-            padding-right: 12px;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .gantt-timeline {
-            flex: 1;
-            position: relative;
-            height: 40px;
-            background: var(--bg);
-            border-radius: 8px;
-            box-shadow: 
-                inset 2px 2px 4px var(--shadow-dark),
-                inset -2px -2px 4px var(--shadow-light);
-        }
-
-        .gantt-bar {
-            position: absolute;
-            height: 100%;
-            background: linear-gradient(135deg, var(--accent), var(--accent-light));
-            border-radius: 8px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            padding: 0 12px;
-            font-size: calc(10px * var(--font-scale));
-            color: white;
-            font-weight: 700;
-            cursor: pointer;
-            box-shadow: 
-                3px 3px 6px var(--shadow-dark),
-                -3px -3px 6px var(--shadow-light);
-            transition: all 0.3s;
-        }
-
-        .gantt-bar:hover {
-            transform: translateY(-2px);
-            box-shadow: 
-                4px 4px 8px var(--shadow-dark),
-                -4px -4px 8px var(--shadow-light);
-        }
-
-        .today-line {
-            position: absolute;
-            top: -12px;
-            bottom: -12px;
-            width: 4px;
-            background: var(--danger);
-            z-index: 10;
-            border-radius: 2px;
-            box-shadow: 0 0 12px var(--danger);
-        }
-
-        .today-line::before {
-            content: 'TODAY';
-            position: absolute;
-            top: -28px;
-            left: 50%;
-            transform: translateX(-50%);
-            background: var(--danger);
-            color: white;
-            padding: 4px 10px;
-            border-radius: 12px;
-            font-size: 9px;
-            font-weight: 900;
-            white-space: nowrap;
-            box-shadow: 
-                3px 3px 6px var(--shadow-dark),
-                -3px -3px 6px var(--shadow-light);
-        }
-
-        /* Calendar */
-        .calendar-container {
-            background: var(--bg);
-            border-radius: 24px;
-            padding: 24px;
-            box-shadow: 
-                8px 8px 16px var(--shadow-dark),
-                -8px -8px 16px var(--shadow-light);
-            margin-bottom: 24px;
-        }
-
-        .calendar-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 20px;
-            padding-bottom: 16px;
-            border-bottom: 2px solid var(--bg);
-            box-shadow: 0 2px 0 var(--shadow-dark);
-        }
-
-        .calendar-grid {
-            display: grid;
-            grid-template-columns: repeat(7, 1fr);
-            gap: 4px;
-            margin-top: 12px;
-        }
-
-        .calendar-day {
-            aspect-ratio: 1;
-            padding: 8px;
-            background: var(--bg);
-            border-radius: 12px;
-            font-size: calc(11px * var(--font-scale));
-            position: relative;
-            overflow: hidden;
-            cursor: pointer;
-            transition: all 0.3s;
-            box-shadow: 
-                3px 3px 6px var(--shadow-dark),
-                -3px -3px 6px var(--shadow-light);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .calendar-day:hover {
-            transform: scale(1.05);
-            box-shadow: 
-                5px 5px 10px var(--shadow-dark),
-                -5px -5px 10px var(--shadow-light);
-            z-index: 10;
-        }
-
-        .calendar-day:active {
-            box-shadow: 
-                inset 2px 2px 4px var(--shadow-dark),
-                inset -2px -2px 4px var(--shadow-light);
-        }
-
-        .calendar-day.other-month {
-            opacity: 0.3;
-        }
-
-        .calendar-day.today {
-            background: linear-gradient(135deg, var(--danger) 0%, #dc2626 100%);
-            color: white;
-            font-weight: 900;
-            box-shadow: 
-                5px 5px 10px var(--shadow-dark),
-                -5px -5px 10px var(--shadow-light),
-                0 0 20px var(--danger);
-            animation: todayPulse 2s infinite;
-            transform: scale(1.08);
-        }
-
-        @keyframes todayPulse {
-            0%, 100% { box-shadow: 5px 5px 10px var(--shadow-dark), -5px -5px 10px var(--shadow-light), 0 0 20px var(--danger); }
-            50% { box-shadow: 5px 5px 10px var(--shadow-dark), -5px -5px 10px var(--shadow-light), 0 0 30px var(--danger); }
-        }
-
-        .calendar-event {
-            font-size: calc(8px * var(--font-scale));
-            padding: 2px 4px;
-            background: var(--accent);
-            color: white;
-            border-radius: 4px;
-            margin-top: 4px;
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
-            max-width: 100%;
         }
 
         /* Modal */
@@ -1240,7 +980,7 @@
             border: none;
         }
 
-        /* Floating FAB */
+        /* FAB */
         .fab-container {
             position: fixed;
             bottom: calc(32px + env(safe-area-inset-bottom));
@@ -1381,252 +1121,6 @@
             font-weight: 600;
         }
 
-        /* Analytics Components */
-        .insight-card {
-            background: var(--bg);
-            border-radius: 24px;
-            padding: 24px;
-            margin-bottom: 20px;
-            box-shadow: 
-                8px 8px 16px var(--shadow-dark),
-                -8px -8px 16px var(--shadow-light);
-            transition: all 0.3s;
-        }
-
-        .insight-card:hover {
-            transform: translateY(-2px);
-            box-shadow: 
-                10px 10px 20px var(--shadow-dark),
-                -10px -10px 20px var(--shadow-light);
-        }
-
-        .insight-header {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            margin-bottom: 16px;
-        }
-
-        .insight-icon {
-            width: 48px;
-            height: 48px;
-            border-radius: 14px;
-            background: var(--bg);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: calc(24px * var(--font-scale));
-            box-shadow: 
-                inset 2px 2px 4px var(--shadow-dark),
-                inset -2px -2px 4px var(--shadow-light);
-        }
-
-        .insight-title {
-            font-size: calc(18px * var(--font-scale));
-            font-weight: 800;
-            color: var(--text-primary);
-        }
-
-        .insight-body {
-            font-size: calc(14px * var(--font-scale));
-            color: var(--text-secondary);
-            line-height: 1.6;
-        }
-
-        .insight-list {
-            list-style: none;
-            padding: 0;
-            margin: 12px 0 0 0;
-        }
-
-        .insight-list li {
-            padding: 8px 0;
-            padding-left: 24px;
-            position: relative;
-            font-size: calc(13px * var(--font-scale));
-            color: var(--text-secondary);
-        }
-
-        .insight-list li:before {
-            content: '→';
-            position: absolute;
-            left: 0;
-            color: var(--accent);
-            font-weight: 700;
-        }
-
-        .warning-card {
-            background: linear-gradient(135deg, rgba(245, 101, 101, 0.1), rgba(237, 137, 54, 0.1));
-            border-left: 4px solid var(--danger);
-        }
-
-        .success-card {
-            background: linear-gradient(135deg, rgba(72, 187, 120, 0.1), rgba(56, 178, 172, 0.1));
-            border-left: 4px solid var(--success);
-        }
-
-        .info-card {
-            background: linear-gradient(135deg, rgba(102, 126, 234, 0.1), rgba(159, 122, 234, 0.1));
-            border-left: 4px solid var(--accent);
-        }
-
-        .metric-row {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 16px;
-            margin: 16px 0;
-        }
-
-        .metric-box {
-            padding: 16px;
-            background: var(--bg);
-            border-radius: 16px;
-            text-align: center;
-            box-shadow: 
-                inset 2px 2px 4px var(--shadow-dark),
-                inset -2px -2px 4px var(--shadow-light);
-        }
-
-        .metric-value {
-            font-size: calc(28px * var(--font-scale));
-            font-weight: 900;
-            color: var(--text-primary);
-            margin-bottom: 4px;
-        }
-
-        .metric-label {
-            font-size: calc(11px * var(--font-scale));
-            color: var(--text-secondary);
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            font-weight: 600;
-        }
-
-        .progress-bar {
-            width: 100%;
-            height: 12px;
-            background: var(--bg);
-            border-radius: 12px;
-            overflow: hidden;
-            margin: 8px 0;
-            box-shadow: 
-                inset 2px 2px 4px var(--shadow-dark),
-                inset -2px -2px 4px var(--shadow-light);
-        }
-
-        .progress-fill {
-            height: 100%;
-            background: linear-gradient(90deg, var(--accent), var(--accent-light));
-            border-radius: 12px;
-            transition: width 0.3s;
-        }
-
-        .progress-fill.warning {
-            background: linear-gradient(90deg, var(--warning), #f59e0b);
-        }
-
-        .progress-fill.danger {
-            background: linear-gradient(90deg, var(--danger), #dc2626);
-        }
-
-        .progress-fill.success {
-            background: linear-gradient(90deg, var(--success), #10b981);
-        }
-
-        .workload-chart {
-            display: grid;
-            grid-template-columns: repeat(7, 1fr);
-            gap: 8px;
-            margin: 16px 0;
-        }
-
-        .workload-day {
-            text-align: center;
-        }
-
-        .workload-day-name {
-            font-size: calc(10px * var(--font-scale));
-            color: var(--text-secondary);
-            margin-bottom: 8px;
-            font-weight: 700;
-        }
-
-        .workload-bar-container {
-            height: 120px;
-            display: flex;
-            align-items: flex-end;
-            justify-content: center;
-        }
-
-        .workload-bar {
-            width: 100%;
-            background: linear-gradient(180deg, var(--accent), var(--accent-light));
-            border-radius: 8px 8px 0 0;
-            transition: all 0.3s;
-            cursor: pointer;
-            box-shadow: 
-                3px 3px 6px var(--shadow-dark),
-                -3px -3px 6px var(--shadow-light);
-        }
-
-        .workload-bar:hover {
-            transform: translateY(-4px);
-            box-shadow: 
-                4px 4px 8px var(--shadow-dark),
-                -4px -4px 8px var(--shadow-light);
-        }
-
-        .workload-bar.light { opacity: 0.3; }
-        .workload-bar.medium { opacity: 0.6; }
-        .workload-bar.heavy { opacity: 1; background: linear-gradient(180deg, var(--warning), #f59e0b); }
-        .workload-bar.overloaded { opacity: 1; background: linear-gradient(180deg, var(--danger), #dc2626); }
-
-        .workload-count {
-            font-size: calc(11px * var(--font-scale));
-            color: var(--text-primary);
-            margin-top: 8px;
-            font-weight: 700;
-        }
-
-        .suggestion-badge {
-            display: inline-block;
-            padding: 4px 12px;
-            background: var(--bg);
-            border-radius: 12px;
-            font-size: calc(11px * var(--font-scale));
-            font-weight: 700;
-            margin: 4px;
-            box-shadow: 
-                2px 2px 4px var(--shadow-dark),
-                -2px -2px 4px var(--shadow-light);
-        }
-
-        .suggestion-badge.priority { color: var(--danger); }
-        .suggestion-badge.warning { color: var(--warning); }
-        .suggestion-badge.success { color: var(--success); }
-        .suggestion-badge.info { color: var(--accent); }
-
-        .info-box {
-            background: var(--bg);
-            border-radius: 16px;
-            padding: 16px;
-            margin: 12px 0;
-            box-shadow: 
-                inset 2px 2px 4px var(--shadow-dark),
-                inset -2px -2px 4px var(--shadow-light);
-            font-size: calc(13px * var(--font-scale));
-            color: var(--text-secondary);
-            line-height: 1.6;
-        }
-
-        .info-box code {
-            background: rgba(102, 126, 234, 0.1);
-            padding: 2px 6px;
-            border-radius: 4px;
-            font-family: monospace;
-            color: var(--accent);
-        }
-
         /* Login Screen */
         .login-screen {
             position: fixed;
@@ -1667,6 +1161,22 @@
         .login-form {
             width: 100%;
             max-width: 400px;
+        }
+
+        /* Trial Timer Animations */
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); opacity: 1; }
+            50% { transform: scale(1.1); opacity: 0.8; }
+        }
+
+        @keyframes blink {
+            0%, 50% { opacity: 1; }
+            51%, 100% { opacity: 0.3; }
+        }
+
+        .timer-warning {
+            animation: blink 1s infinite !important;
+            color: #ff4444 !important;
         }
 
         /* Responsive */
@@ -1728,11 +1238,6 @@
                 margin: 16px;
             }
 
-            .gantt-container {
-                overflow-x: auto;
-                width: 100%;
-            }
-
             .logo {
                 font-size: calc(20px * var(--font-scale));
             }
@@ -1746,82 +1251,63 @@
                 padding: 20px;
             }
 
-            .gantt-label {
-                width: 100px;
-                font-size: calc(11px * var(--font-scale));
-            }
-
             .fab {
                 width: 60px;
                 height: 60px;
                 font-size: calc(28px * var(--font-scale));
             }
         }
-        /* Trial Timer Animations */
-@keyframes pulse {
-    0%, 100% { transform: scale(1); opacity: 1; }
-    50% { transform: scale(1.1); opacity: 0.8; }
-}
-
-@keyframes blink {
-    0%, 50% { opacity: 1; }
-    51%, 100% { opacity: 0.3; }
-}
-
-.timer-warning {
-    animation: blink 1s infinite !important;
-    color: #ff4444 !important;
-}
     </style>
 </head>
 <body>
     <!-- Demo Timer Banner -->
-<div style="position: fixed; top: 0; left: 0; right: 0; background: linear-gradient(135deg, #667eea, #764ba2); color: white; padding: 12px 20px; z-index: 10001; box-shadow: 0 4px 12px rgba(0,0,0,0.3); display: flex; justify-content: space-between; align-items: center; font-family: 'Inter', sans-serif;">
-    <div style="display: flex; align-items: center; gap: 12px;">
-        <span style="font-size: 20px; animation: pulse 2s infinite;">⏰</span>
-        <span style="font-size: 20px; font-weight: 700; font-family: 'Courier New', monospace; letter-spacing: 2px;" id="timerDisplay">15:00</span>
-        <span style="font-size: 14px; font-weight: 600; opacity: 0.95;">FREE TRIAL</span>
-    </div>
-    <button onclick="exportTrialData()" style="background: white; color: #667eea; padding: 8px 16px; border-radius: 20px; border: none; font-weight: 700; font-size: 13px; cursor: pointer; transition: all 0.3s; box-shadow: 0 2px 8px rgba(0,0,0,0.2);">
-        💾 Export Data
-    </button>
-</div>
-
-<!-- Trial Notice -->
-<div style="margin-top: 50px; background: linear-gradient(135deg, rgba(255,243,205,0.95), rgba(255,230,156,0.95)); padding: 15px 20px; border-bottom: 3px solid #ffc107;">
-    <div style="max-width: 1400px; margin: 0 auto;">
-        <h3 style="color: #856404; font-size: 16px; margin-bottom: 8px; display: flex; align-items: center; gap: 8px;">
-            <span>🎯</span> Welcome to Builder Pro FREE Trial!
-        </h3>
-        <ul style="margin: 0; padding-left: 20px; color: #856404; font-size: 13px; line-height: 1.8;">
-            <li>✅ Full access to ALL features for 15 minutes</li>
-            <li>📊 Add unlimited projects, tasks, expenses & income</li>
-            <li>💾 <strong>IMPORTANT:</strong> Export your data before trial ends</li>
-            <li>📥 Import your data later after purchasing full version</li>
-        </ul>
-    </div>
-</div>
-
-<!-- Trial Expired Overlay -->
-<div id="trialExpiredOverlay" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.95); z-index: 10002; align-items: center; justify-content: center; padding: 20px;">
-    <div style="background: white; padding: 40px 30px; border-radius: 20px; text-align: center; max-width: 450px; width: 90%; box-shadow: 0 20px 60px rgba(0,0,0,0.5);">
-        <div style="font-size: 72px; margin-bottom: 20px; animation: pulse 2s infinite;">⏰</div>
-        <h2 style="font-size: 32px; margin-bottom: 15px; color: #667eea; font-weight: 800;">Trial Expired!</h2>
-        <p style="margin-bottom: 25px; color: #666; line-height: 1.8; font-size: 16px;">
-            Your 15-minute trial has ended. <strong>Don't lose your work!</strong><br>
-            Export your data now and import it later after purchase.
-        </p>
-        <button onclick="exportTrialData()" style="background: linear-gradient(135deg, #51cf66, #37b24d); color: white; padding: 16px 40px; border-radius: 25px; border: none; font-weight: 700; font-size: 17px; cursor: pointer; width: 100%; margin-bottom: 15px; transition: all 0.3s; box-shadow: 0 4px 15px rgba(81,207,102,0.4);">
-            💾 Export My Data First
+    <div style="position: fixed; top: 0; left: 0; right: 0; background: linear-gradient(135deg, #667eea, #764ba2); color: white; padding: 12px 20px; z-index: 10001; box-shadow: 0 4px 12px rgba(0,0,0,0.3); display: flex; justify-content: space-between; align-items: center; font-family: 'Inter', sans-serif;">
+        <div style="display: flex; align-items: center; gap: 12px;">
+            <span style="font-size: 20px; animation: pulse 2s infinite;">⏰</span>
+            <span style="font-size: 20px; font-weight: 700; font-family: 'Courier New', monospace; letter-spacing: 2px;" id="timerDisplay">15:00</span>
+            <span style="font-size: 14px; font-weight: 600; opacity: 0.95;">FREE TRIAL</span>
+        </div>
+        <button onclick="exportTrialData()" style="background: white; color: #667eea; padding: 8px 16px; border-radius: 20px; border: none; font-weight: 700; font-size: 13px; cursor: pointer; transition: all 0.3s; box-shadow: 0 2px 8px rgba(0,0,0,0.2);">
+            💾 Export Data
         </button>
-        <a href="https://lyode.github.io/refitinterior/#products" style="display: block; background: linear-gradient(135deg, #667eea, #764ba2); color: white; padding: 16px 40px; border-radius: 25px; text-decoration: none; font-weight: 700; font-size: 17px; transition: all 0.3s; box-shadow: 0 4px 15px rgba(102,126,234,0.4);">
-            Purchase Full Version - RM299 →
-        </a>
-        <p style="margin-top: 20px; font-size: 13px; color: #999;">
-            Lifetime access • Free updates • Email support
-        </p>
     </div>
-</div>
+
+    <!-- Trial Notice -->
+    <div style="margin-top: 50px; background: linear-gradient(135deg, rgba(255,243,205,0.95), rgba(255,230,156,0.95)); padding: 15px 20px; border-bottom: 3px solid #ffc107;">
+        <div style="max-width: 1400px; margin: 0 auto;">
+            <h3 style="color: #856404; font-size: 16px; margin-bottom: 8px; display: flex; align-items: center; gap: 8px;">
+                <span>🎯</span> Welcome to Builder Pro FREE Trial!
+            </h3>
+            <ul style="margin: 0; padding-left: 20px; color: #856404; font-size: 13px; line-height: 1.8;">
+                <li>✅ Full access to ALL features for 15 minutes</li>
+                <li>📊 Add unlimited projects, tasks, expenses & income</li>
+                <li>💾 <strong>IMPORTANT:</strong> Export your data before trial ends</li>
+                <li>📥 Import your data later after purchasing full version</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Trial Expired Overlay -->
+    <div id="trialExpiredOverlay" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.95); z-index: 10002; align-items: center; justify-content: center; padding: 20px;">
+        <div style="background: white; padding: 40px 30px; border-radius: 20px; text-align: center; max-width: 450px; width: 90%; box-shadow: 0 20px 60px rgba(0,0,0,0.5);">
+            <div style="font-size: 72px; margin-bottom: 20px; animation: pulse 2s infinite;">⏰</div>
+            <h2 style="font-size: 32px; margin-bottom: 15px; color: #667eea; font-weight: 800;">Trial Expired!</h2>
+            <p style="margin-bottom: 25px; color: #666; line-height: 1.8; font-size: 16px;">
+                Your 15-minute trial has ended. <strong>Don't lose your work!</strong><br>
+                Export your data now and import it later after purchase.
+            </p>
+            <button onclick="exportTrialData()" style="background: linear-gradient(135deg, #51cf66, #37b24d); color: white; padding: 16px 40px; border-radius: 25px; border: none; font-weight: 700; font-size: 17px; cursor: pointer; width: 100%; margin-bottom: 15px; transition: all 0.3s; box-shadow: 0 4px 15px rgba(81,207,102,0.4);">
+                💾 Export My Data First
+            </button>
+            <a href="https://lyode.github.io/refitinterior/#products" style="display: block; background: linear-gradient(135deg, #667eea, #764ba2); color: white; padding: 16px 40px; border-radius: 25px; text-decoration: none; font-weight: 700; font-size: 17px; transition: all 0.3s; box-shadow: 0 4px 15px rgba(102,126,234,0.4);">
+                Purchase Full Version - RM299 →
+            </a>
+            <p style="margin-top: 20px; font-size: 13px; color: #999;">
+                Lifetime access • Free updates • Email support
+            </p>
+        </div>
+    </div>
+
     <div class="pull-to-refresh" id="pullToRefresh">🔄</div>
 
     <div class="login-screen" id="loginScreen">
@@ -1851,28 +1337,14 @@
             </div>
         </div>
         <div class="header-btns">
-            <button class="neuro-btn" onclick="smartSync()" title="Smart Sync">
-                🔄
-                <span class="sync-indicator" id="syncIndicator"></span>
-            </button>
             <button class="neuro-btn" onclick="toggleSettings()" title="Settings">⚙️</button>
         </div>
     </header>
 
-    <div class="sync-status-bar" id="syncStatusBar">
-        <span id="deviceType"></span> • 
-        <span id="lastSyncTime" style="cursor: pointer;" onclick="showToast('Click 🔄 to sync now')">Never synced</span> • 
-        <span id="syncMode">Offline</span>
-    </div>
-
     <nav class="nav">
         <div class="nav-container">
             <button class="nav-item active" onclick="switchView('home')">Home</button>
-            <button class="nav-item" onclick="switchView('analytics')">Analytics</button>
-            <button class="nav-item" onclick="switchView('kanban')">Kanban</button>
             <button class="nav-item" onclick="switchView('projects')">Projects</button>
-            <button class="nav-item" onclick="switchView('schedule')">Schedule</button>
-            <button class="nav-item" onclick="switchView('calendar')">Calendar</button>
         </div>
     </nav>
 
@@ -1916,34 +1388,6 @@
         <div class="settings-header">
             <span style="font-size: calc(20px * var(--font-scale)); font-weight: 800;">⚙️ Settings</span>
             <button class="modal-close" onclick="toggleSettings()">✕</button>
-        </div>
-
-        <!-- JSONBin Setup -->
-        <div class="settings-section">
-            <label class="settings-label">🔑 JSONBin Setup (Cloud Sync)</label>
-            <div class="info-box">
-                <strong>How to setup cloud sync:</strong><br><br>
-                1. Visit <code>jsonbin.io</code><br>
-                2. Sign up for free account<br>
-                3. Create a new bin (empty JSON: <code>{}</code>)<br>
-                4. Copy your <strong>Bin ID</strong> and <strong>API Key</strong><br>
-                5. Paste them below
-            </div>
-            <div class="form-group">
-                <label>Bin ID</label>
-                <input type="text" id="binIdInput" placeholder="e.g., 60a1b2c3d4e5f6g7h8i9j0k1">
-            </div>
-            <div class="form-group">
-                <label>API Key</label>
-                <input type="password" id="apiKeyInput" placeholder="Your JSONBin API Key">
-            </div>
-            <button class="btn btn-primary" onclick="saveSyncSettings()" style="width: 100%; margin-bottom: 8px;">💾 Save Sync Settings</button>
-            <button class="btn" onclick="testSync()" style="width: 100%;">🔍 Test Connection</button>
-            <div style="display: flex; align-items: center; justify-content: space-between; margin-top: 12px;">
-                <span style="font-weight: 600; color: var(--text-secondary); font-size: calc(13px * var(--font-scale));">⚡ Auto-Sync (every 5min)</span>
-                <input type="checkbox" id="autoSyncToggle" onchange="toggleAutoSync()" style="width: 48px; height: 28px;">
-            </div>
-            <button class="btn btn-primary" onclick="smartSync()" style="width: 100%; margin-top: 12px;">🔄 Manual Sync Now</button>
         </div>
 
         <!-- Theme Colors -->
@@ -2261,42 +1705,9 @@
         </div>
     </div>
 
-    <!-- Project Detail Modal -->
-    <div class="modal" id="projectDetailModal">
-        <div class="modal-content" style="max-width: 600px;">
-            <div class="modal-header">
-                <div class="modal-title" id="projectDetailTitle">Project Details</div>
-                <button class="modal-close" onclick="closeModal('projectDetailModal')">✕</button>
-            </div>
-            <div id="projectDetailBody" class="modal-body" style="max-height: 60vh; overflow-y: auto;"></div>
-            <div class="modal-footer">
-                <button class="btn" onclick="closeModal('projectDetailModal')">Close</button>
-            </div>
-        </div>
-    </div>
-
-    <!-- Day Detail Modal -->
-    <div class="modal" id="dayDetailModal">
-        <div class="modal-content" style="max-width: 500px;">
-            <div class="modal-header">
-                <div class="modal-title" id="dayDetailTitle">📅 Day Details</div>
-                <button class="modal-close" onclick="closeModal('dayDetailModal')">✕</button>
-            </div>
-            <div id="dayDetailBody" class="modal-body" style="max-height: 60vh; overflow-y: auto;"></div>
-            <div class="modal-footer">
-                <button class="btn" onclick="closeModal('dayDetailModal')">Close</button>
-            </div>
-        </div>
-    </div>
-
     <div class="toast" id="toast"></div>
 
     <script>
-        const APP_CONFIG = {
-            baseUrl: 'https://api.jsonbin.io/v3',
-            deviceType: /iPhone|iPad|iPod|Android/i.test(navigator.userAgent) ? 'Mobile' : 'Laptop'
-        };
-
         const THEMES = {
             ocean: { 
                 bg: '#E0E5EC', shadowLight: '#FFFFFF', shadowDark: '#A3B1C6',
@@ -2405,29 +1816,23 @@
             floatingText: false,
             textElevation: 25,
             theme: 'ocean',
-            lastUpdated: null,
-            binId: '',
-            apiKey: ''
+            lastUpdated: null
         };
 
         let editingId = null;
         let editingType = null;
-        let autoSyncInterval = null;
-        let autoSyncEnabled = false;
-        let pullStartY = 0;
-        let isPulling = false;
+
+        const TRIAL_DURATION = 15 * 60 * 1000; // 15 minutes
+        let trialStartTime = null;
+        let timerInterval = null;
 
         document.addEventListener('DOMContentLoaded', () => {
             loadData();
             checkLogin();
-            initUI();
             updateStats();
             renderView();
-            initAutoSync();
-            initializeLastSync();
             initPullToRefresh();
-            
-            document.getElementById('deviceType').textContent = APP_CONFIG.deviceType;
+            initTrial();
             
             if (data.projects.length === 0 && data.tasks.length === 0 && data.currentUser !== 'Builder Pro') {
                 setTimeout(() => {
@@ -2436,6 +1841,121 @@
             }
         });
 
+        // ========== TRIAL SYSTEM ==========
+        function initTrial() {
+            const savedStartTime = localStorage.getItem('demoTrialStartTime');
+            
+            if (savedStartTime) {
+                trialStartTime = parseInt(savedStartTime);
+                const elapsed = Date.now() - trialStartTime;
+                
+                if (elapsed >= TRIAL_DURATION) {
+                    showTrialExpired();
+                    return;
+                }
+            } else {
+                trialStartTime = Date.now();
+                localStorage.setItem('demoTrialStartTime', trialStartTime);
+            }
+            
+            startTimer();
+            
+            setTimeout(() => {
+                showToast('👋 Welcome! 15 minutes to try everything. Export your data before time ends!', 6000);
+            }, 2000);
+        }
+
+        function startTimer() {
+            updateTimerDisplay();
+            timerInterval = setInterval(updateTimerDisplay, 1000);
+        }
+
+        function updateTimerDisplay() {
+            const elapsed = Date.now() - trialStartTime;
+            const remaining = TRIAL_DURATION - elapsed;
+
+            if (remaining <= 0) {
+                clearInterval(timerInterval);
+                showTrialExpired();
+                return;
+            }
+
+            const minutes = Math.floor(remaining / 60000);
+            const seconds = Math.floor((remaining % 60000) / 1000);
+            const display = `${minutes}:${seconds.toString().padStart(2, '0')}`;
+            
+            const timerEl = document.getElementById('timerDisplay');
+            if (timerEl) {
+                timerEl.textContent = display;
+                if (remaining < 180000) {
+                    timerEl.classList.add('timer-warning');
+                }
+            }
+
+            // Warnings
+            if (remaining === 300000) {
+                showToast('⚠️ 5 minutes remaining! Export your data soon.', 5000);
+            } else if (remaining === 120000) {
+                showToast('⚠️ Only 2 minutes left! Export your data now!', 5000);
+            } else if (remaining === 60000) {
+                showToast('🚨 LAST MINUTE! Export your data immediately!', 8000);
+            }
+        }
+
+        function showTrialExpired() {
+            document.getElementById('trialExpiredOverlay').style.display = 'flex';
+            
+            document.querySelectorAll('.fab, .btn-primary, .action-btn, .neuro-btn').forEach(btn => {
+                if (!btn.onclick || !btn.onclick.toString().includes('export')) {
+                    btn.disabled = true;
+                    btn.style.opacity = '0.5';
+                    btn.style.cursor = 'not-allowed';
+                }
+            });
+        }
+
+        function exportTrialData() {
+            const exportData = {
+                version: '1.0',
+                appName: 'Builder Pro',
+                exportDate: new Date().toISOString(),
+                exportType: 'trial',
+                message: 'Import this file after purchasing Builder Pro to restore your data!',
+                data: {
+                    projects: data.projects || [],
+                    tasks: data.tasks || [],
+                    transactions: data.transactions || [],
+                    currentUser: data.currentUser || 'Builder Pro User',
+                    userPhone: data.userPhone || ''
+                }
+            };
+
+            const blob = new Blob([JSON.stringify(exportData, null, 2)], { type: 'application/json' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `builder-pro-trial-${Date.now()}.json`;
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+
+            const projectCount = exportData.data.projects.length;
+            const taskCount = exportData.data.tasks.length;
+            const transCount = exportData.data.transactions.length;
+
+            showToast(`✅ Data exported!\n${projectCount} projects, ${taskCount} tasks, ${transCount} transactions saved!`, 5000);
+        }
+
+        window.addEventListener('beforeunload', (e) => {
+            if (data.projects.length > 0 || data.tasks.length > 0) {
+                e.preventDefault();
+                e.returnValue = '⚠️ Export your data before leaving!';
+                return e.returnValue;
+            }
+        });
+
+        // ========== CORE FUNCTIONS ==========
         function checkLogin() {
             if (!data.currentUser || data.currentUser === 'Builder Pro' || !data.userPhone) {
                 document.getElementById('loginScreen').classList.remove('hidden');
@@ -2516,7 +2036,6 @@
             const theme = THEMES[themeName];
             if (!theme) return;
             
-            // Apply all color variables to change entire page
             document.documentElement.style.setProperty('--bg', theme.bg);
             document.documentElement.style.setProperty('--shadow-light', theme.shadowLight);
             document.documentElement.style.setProperty('--shadow-dark', theme.shadowDark);
@@ -2582,33 +2101,6 @@
             localStorage.setItem('builderProData', JSON.stringify(data));
         }
 
-        function addTimestamps(item, isNew = false) {
-            const now = new Date().toISOString();
-            if (isNew) item.created_at = now;
-            item.updated_at = now;
-            return item;
-        }
-
-        function mergeByTimestamp(localItems, cloudItems) {
-            const merged = new Map();
-            localItems.forEach(item => merged.set(item.id, { ...item, _source: 'local' }));
-            cloudItems.forEach(cloudItem => {
-                const localItem = merged.get(cloudItem.id);
-                if (!localItem) {
-                    merged.set(cloudItem.id, { ...cloudItem, _source: 'cloud' });
-                } else {
-                    const localTime = new Date(localItem.updated_at || localItem.created_at || 0);
-                    const cloudTime = new Date(cloudItem.updated_at || cloudItem.created_at || 0);
-                    if (cloudTime > localTime) {
-                        merged.set(cloudItem.id, { ...cloudItem, _source: 'cloud' });
-                    }
-                }
-            });
-            const result = Array.from(merged.values()).filter(item => !item.deleted_at);
-            result.forEach(item => delete item._source);
-            return result;
-        }
-
         function applySettings() {
             if (data.nightMode) {
                 document.body.classList.add('night-mode');
@@ -2631,7 +2123,6 @@
             document.getElementById('elevationSlider').value = data.textElevation;
             document.getElementById('elevationValue').textContent = data.textElevation + 'px';
             
-            // Apply saved theme colors
             if (data.theme && THEMES[data.theme]) {
                 const theme = THEMES[data.theme];
                 document.documentElement.style.setProperty('--bg', theme.bg);
@@ -2646,14 +2137,6 @@
             
             setFontSize(data.fontSize || 'm');
             updateHeader();
-            
-            if (data.binId) {
-                document.getElementById('binIdInput').value = data.binId;
-            }
-        }
-
-        function initUI() {
-            document.getElementById('deviceType').textContent = APP_CONFIG.deviceType;
         }
 
         function setFontSize(size) {
@@ -2726,11 +2209,7 @@
             const content = document.getElementById('mainContent');
             switch(data.currentView) {
                 case 'home': renderHome(content); break;
-                case 'analytics': renderAnalytics(content); break;
-                case 'kanban': renderKanban(content); break;
                 case 'projects': renderProjects(content); break;
-                case 'schedule': renderSchedule(content); break;
-                case 'calendar': renderCalendar(content); break;
             }
         }
 
@@ -2762,9 +2241,7 @@
                 </div>
             `;
             
-            if (data.projects.length > 0) {
-                html += renderProjectTimeline();
-            } else {
+            if (data.projects.length === 0) {
                 html += `
                     <div class="empty-state">
                         <div class="empty-icon">🎯</div>
@@ -2776,9 +2253,6 @@
             
             container.innerHTML = html;
         }
-
-        // Continue with remaining render functions... (renderAnalytics, renderKanban, renderProjects, renderSchedule, renderCalendar, renderProjectTimeline)
-        // For brevity, I'll include the key ones. The full code would have all render functions from the original.
 
         function renderProjects(container) {
             if (data.projects.length === 0) {
@@ -2868,34 +2342,6 @@
             container.innerHTML = html;
         }
 
-        // Due to character limits, I'll include stubs for the remaining render functions
-        // The complete file would have all of these fully implemented from the original
-
-        function renderAnalytics(container) {
-            // Full analytics rendering code from original
-            container.innerHTML = '<div class="empty-state"><div class="empty-icon">📊</div><div class="empty-title">Analytics Coming Soon</div></div>';
-        }
-
-        function renderKanban(container) {
-            // Full kanban rendering code from original
-            container.innerHTML = '<div class="empty-state"><div class="empty-icon">📋</div><div class="empty-title">Kanban Board</div></div>';
-        }
-
-        function renderSchedule(container) {
-            // Full schedule/gantt rendering code from original
-            container.innerHTML = '<div class="empty-state"><div class="empty-icon">📅</div><div class="empty-title">Schedule View</div></div>';
-        }
-
-        function renderCalendar(container) {
-            // Full calendar rendering code from original
-            container.innerHTML = '<div class="empty-state"><div class="empty-icon">🗓️</div><div class="empty-title">Calendar View</div></div>';
-        }
-
-        function renderProjectTimeline() {
-            // Full timeline rendering code from original
-            return '';
-        }
-
         function updateStats() {
             document.getElementById('totalProjects').textContent = data.projects.length;
             document.getElementById('totalTasks').textContent = data.tasks.length;
@@ -2972,22 +2418,11 @@
             
             if (editingId) {
                 const index = data.projects.findIndex(p => p.id === editingId);
-                const wasCompleted = data.projects[index].completed;
-                data.projects[index] = addTimestamps({ ...data.projects[index], ...projectData }, false);
-                
-                if (projectData.completed && !wasCompleted) {
-                    data.projects[index].completedAt = new Date().toISOString();
-                } else if (!projectData.completed && wasCompleted) {
-                    data.projects[index].completedAt = null;
-                }
-                
+                data.projects[index] = { ...data.projects[index], ...projectData };
                 showToast('Project updated');
             } else {
                 projectData.id = Date.now();
-                if (projectData.completed) {
-                    projectData.completedAt = new Date().toISOString();
-                }
-                data.projects.push(addTimestamps(projectData, true));
+                data.projects.push(projectData);
                 showToast('Project created');
             }
             
@@ -3002,11 +2437,6 @@
             if (!project) return;
             
             if (confirm(`⚠️ Permanently delete "${project.name}"?\n\nThis will delete all tasks and transactions.\n\nThis CANNOT be undone.`)) {
-                const now = new Date().toISOString();
-                
-                if (!data.permanentlyDeleted) data.permanentlyDeleted = [];
-                data.permanentlyDeleted.push({ id, type: 'project', deletedAt: now, name: project.name });
-                
                 data.projects = data.projects.filter(p => p.id !== id);
                 data.tasks = data.tasks.filter(t => t.projectId !== id);
                 data.transactions = data.transactions.filter(t => t.projectId !== id);
@@ -3022,7 +2452,6 @@
             const project = data.projects.find(p => p.id === id);
             if (project) {
                 project.locked = !project.locked;
-                addTimestamps(project, false);
                 saveData();
                 renderView();
                 showToast(project.locked ? 'Project locked' : 'Project unlocked');
@@ -3033,12 +2462,6 @@
             const project = data.projects.find(p => p.id === id);
             if (project) {
                 project.completed = !project.completed;
-                if (project.completed) {
-                    project.completedAt = new Date().toISOString();
-                } else {
-                    project.completedAt = null;
-                }
-                addTimestamps(project, false);
                 saveData();
                 renderView();
                 updateStats();
@@ -3065,10 +2488,7 @@
             });
             
             document.getElementById('taskModal').classList.add('show');
-            
-            if (data.currentView !== 'projects' && data.currentView !== 'schedule') {
-                toggleFabMenu();
-            }
+            toggleFabMenu();
         }
 
         function editTask(id) {
@@ -3115,11 +2535,11 @@
             
             if (editingId) {
                 const index = data.tasks.findIndex(t => t.id === editingId);
-                data.tasks[index] = addTimestamps({ ...data.tasks[index], ...taskData }, false);
+                data.tasks[index] = { ...data.tasks[index], ...taskData };
                 showToast('Task updated');
             } else {
                 taskData.id = Date.now();
-                data.tasks.push(addTimestamps(taskData, true));
+                data.tasks.push(taskData);
                 showToast('Task created');
             }
             
@@ -3143,8 +2563,6 @@
             const task = data.tasks.find(t => t.id === id);
             if (task) {
                 task.status = 'Completed';
-                task.completedAt = new Date().toISOString();
-                addTimestamps(task, false);
                 saveData();
                 renderView();
                 showToast('✅ Task completed');
@@ -3168,10 +2586,7 @@
             
             updateCategories();
             document.getElementById('transactionModal').classList.add('show');
-            
-            if (data.currentView !== 'projects') {
-                toggleFabMenu();
-            }
+            toggleFabMenu();
         }
 
         function updateCategories() {
@@ -3203,186 +2618,13 @@
             }
             
             transData.id = Date.now();
-            data.transactions.push(addTimestamps(transData, true));
+            data.transactions.push(transData);
             showToast('Transaction added');
             
             saveData();
             renderView();
             updateStats();
             closeModal('transactionModal');
-        }
-
-        function initAutoSync() {
-            const savedAutoSync = localStorage.getItem('autoSyncEnabled');
-            if (savedAutoSync === 'true' && data.binId && data.apiKey) {
-                autoSyncEnabled = true;
-                document.getElementById('autoSyncToggle').checked = true;
-                startAutoSync();
-            }
-        }
-
-        function toggleAutoSync() {
-            autoSyncEnabled = document.getElementById('autoSyncToggle').checked;
-            localStorage.setItem('autoSyncEnabled', autoSyncEnabled.toString());
-            
-            if (autoSyncEnabled) {
-                startAutoSync();
-                showToast('Auto-sync enabled');
-            } else {
-                stopAutoSync();
-                showToast('Auto-sync disabled');
-            }
-        }
-
-        function startAutoSync() {
-            stopAutoSync();
-            if (data.binId && data.apiKey && autoSyncEnabled) {
-                autoSyncInterval = setInterval(() => {
-                    smartSync();
-                }, 5 * 60 * 1000);
-            }
-        }
-
-        function stopAutoSync() {
-            if (autoSyncInterval) {
-                clearInterval(autoSyncInterval);
-                autoSyncInterval = null;
-            }
-        }
-
-        function initializeLastSync() {
-            const lastSyncTime = localStorage.getItem('lastSyncTime');
-            if (lastSyncTime) {
-                const date = new Date(parseInt(lastSyncTime));
-                document.getElementById('lastSyncTime').textContent = `Last: ${date.toLocaleTimeString()}`;
-            }
-            
-            document.getElementById('syncMode').textContent = (data.binId && data.apiKey) ? 'Ready' : 'No Setup';
-        }
-
-        function saveSyncSettings() {
-            const binId = document.getElementById('binIdInput').value.trim();
-            const apiKey = document.getElementById('apiKeyInput').value.trim();
-            
-            if (!binId || !apiKey) {
-                showToast('⚠️ Please enter both Bin ID and API Key');
-                return;
-            }
-            
-            data.binId = binId;
-            data.apiKey = apiKey;
-            saveData();
-            
-            document.getElementById('syncMode').textContent = 'Ready';
-            showToast('✅ Sync settings saved! Now test connection', 4000);
-        }
-
-        async function smartSync() {
-            if (!data.binId || !data.apiKey) {
-                showToast('⚠️ No sync setup! Go to Settings → JSONBin Setup', 6000);
-                document.getElementById('syncMode').textContent = 'No Setup';
-                return;
-            }
-            
-            const indicator = document.getElementById('syncIndicator');
-            const syncMode = document.getElementById('syncMode');
-            
-            indicator.classList.add('syncing');
-            syncMode.textContent = 'Syncing...';
-            
-            try {
-                const getResponse = await fetch(`${APP_CONFIG.baseUrl}/b/${data.binId}/latest`, {
-                    headers: { 'X-Master-Key': data.apiKey }
-                });
-                
-                if (!getResponse.ok) throw new Error(`Pull failed: ${getResponse.status}`);
-                
-                let cloudData = null;
-                if (getResponse.ok) {
-                    const result = await getResponse.json();
-                    cloudData = result.record || {};
-                }
-                
-                if (cloudData && cloudData.projects) {
-                    data.projects = mergeByTimestamp(data.projects || [], cloudData.projects || []);
-                    data.tasks = mergeByTimestamp(data.tasks || [], cloudData.tasks || []);
-                    data.transactions = mergeByTimestamp(data.transactions || [], cloudData.transactions || []);
-                    
-                    if (cloudData.permanentlyDeleted) {
-                        data.permanentlyDeleted = [
-                            ...(data.permanentlyDeleted || []),
-                            ...cloudData.permanentlyDeleted
-                        ];
-                        data.permanentlyDeleted = Array.from(
-                            new Map(data.permanentlyDeleted.map(item => [item.id, item])).values()
-                        );
-                    }
-                    
-                    saveData();
-                    renderView();
-                    updateStats();
-                }
-                
-                const putResponse = await fetch(`${APP_CONFIG.baseUrl}/b/${data.binId}`, {
-                    method: 'PUT',
-                    headers: {
-                        'Content-Type': 'application/json',
-                        'X-Master-Key': data.apiKey
-                    },
-                    body: JSON.stringify(data)
-                });
-                
-                if (!putResponse.ok) throw new Error(`Push failed: ${putResponse.status}`);
-                
-                localStorage.setItem('lastSyncTime', Date.now().toString());
-                const nowTime = new Date().toLocaleTimeString();
-                document.getElementById('lastSyncTime').textContent = `Last: ${nowTime}`;
-                showToast(`✅ Synced ${data.projects.length}p ${data.tasks.length}t!`, 3000);
-                indicator.classList.remove('syncing');
-                syncMode.textContent = 'Connected';
-                
-            } catch (error) {
-                let errorMsg = error.message;
-                if (error.message.includes('401')) errorMsg = 'Invalid API key!';
-                else if (error.message.includes('404')) errorMsg = 'Bin not found!';
-                else if (error.message.includes('Failed to fetch')) errorMsg = 'No internet!';
-                
-                showToast(`❌ ${errorMsg}`, 5000);
-                indicator.classList.remove('syncing');
-                syncMode.textContent = 'Error';
-            }
-        }
-
-        async function testSync() {
-            if (!data.binId || !data.apiKey) {
-                showToast('⚠️ No sync setup!');
-                return;
-            }
-            
-            showToast('🔍 Testing connection...');
-            
-            try {
-                const response = await fetch(`${APP_CONFIG.baseUrl}/b/${data.binId}/latest`, {
-                    headers: { 'X-Master-Key': data.apiKey }
-                });
-                
-                if (response.ok) {
-                    showToast('✅ Connection works! Sync ready.');
-                    document.getElementById('syncMode').textContent = 'Connected';
-                } else if (response.status === 401) {
-                    showToast('❌ Invalid API key!');
-                    document.getElementById('syncMode').textContent = 'Invalid Key';
-                } else if (response.status === 404) {
-                    showToast('❌ Bin not found!');
-                    document.getElementById('syncMode').textContent = 'Invalid Bin';
-                } else {
-                    showToast(`❌ Error ${response.status}`);
-                    document.getElementById('syncMode').textContent = 'Error';
-                }
-            } catch (error) {
-                showToast('❌ Connection failed! Check internet');
-                document.getElementById('syncMode').textContent = 'Offline';
-            }
         }
 
         function exportData() {
@@ -3433,7 +2675,6 @@
             const userInput = prompt(confirmMsg);
             
             if (userInput === 'DELETE') {
-                // Reset to default data
                 data = {
                     currentUser: 'Builder Pro',
                     userPhone: '',
@@ -3449,17 +2690,11 @@
                     floatingText: false,
                     textElevation: 25,
                     theme: 'ocean',
-                    lastUpdated: null,
-                    binId: '',
-                    apiKey: ''
+                    lastUpdated: null
                 };
                 
-                // Clear localStorage
                 localStorage.removeItem('builderProData');
-                localStorage.removeItem('lastSyncTime');
-                localStorage.removeItem('autoSyncEnabled');
                 
-                // Reset UI
                 applySettings();
                 renderView();
                 updateStats();
@@ -3471,135 +2706,6 @@
                 showToast('❌ Clear cancelled - must type "DELETE"');
             }
         }
-        // ========================================
-// === 15-MINUTE TRIAL SYSTEM ===
-// ========================================
-
-const TRIAL_DURATION = 15 * 60 * 1000; // 15 minutes
-let trialStartTime = null;
-let timerInterval = null;
-
-function initTrial() {
-    const savedStartTime = localStorage.getItem('demoTrialStartTime');
-    
-    if (savedStartTime) {
-        trialStartTime = parseInt(savedStartTime);
-        const elapsed = Date.now() - trialStartTime;
-        
-        if (elapsed >= TRIAL_DURATION) {
-            showTrialExpired();
-            return;
-        }
-    } else {
-        trialStartTime = Date.now();
-        localStorage.setItem('demoTrialStartTime', trialStartTime);
-    }
-    
-    startTimer();
-    
-    // Show welcome message
-    setTimeout(() => {
-        showToast('👋 Welcome! 15 minutes to try everything. Export your data before time ends!', 6000);
-    }, 2000);
-}
-
-function startTimer() {
-    updateTimerDisplay();
-    timerInterval = setInterval(updateTimerDisplay, 1000);
-}
-
-function updateTimerDisplay() {
-    const elapsed = Date.now() - trialStartTime;
-    const remaining = TRIAL_DURATION - elapsed;
-
-    if (remaining <= 0) {
-        clearInterval(timerInterval);
-        showTrialExpired();
-        return;
-    }
-
-    const minutes = Math.floor(remaining / 60000);
-    const seconds = Math.floor((remaining % 60000) / 1000);
-    const display = `${minutes}:${seconds.toString().padStart(2, '0')}`;
-    
-    const timerEl = document.getElementById('timerDisplay');
-    if (timerEl) {
-        timerEl.textContent = display;
-        if (remaining < 180000) {
-            timerEl.classList.add('timer-warning');
-        }
-    }
-
-    // Warnings
-    if (remaining === 300000) {
-        showToast('⚠️ 5 minutes remaining! Export your data soon.', 5000);
-    } else if (remaining === 120000) {
-        showToast('⚠️ Only 2 minutes left! Export your data now!', 5000);
-    } else if (remaining === 60000) {
-        showToast('🚨 LAST MINUTE! Export your data immediately!', 8000);
-    }
-}
-
-function showTrialExpired() {
-    document.getElementById('trialExpiredOverlay').style.display = 'flex';
-    
-    // Disable interaction
-    document.querySelectorAll('.fab, .btn-primary, .action-btn, .neuro-btn').forEach(btn => {
-        if (!btn.onclick || !btn.onclick.toString().includes('export')) {
-            btn.disabled = true;
-            btn.style.opacity = '0.5';
-            btn.style.cursor = 'not-allowed';
-        }
-    });
-}
-
-function exportTrialData() {
-    const exportData = {
-        version: '1.0',
-        appName: 'Builder Pro',
-        exportDate: new Date().toISOString(),
-        exportType: 'trial',
-        message: 'Import this file after purchasing Builder Pro to restore your data!',
-        data: {
-            projects: data.projects || [],
-            tasks: data.tasks || [],
-            transactions: data.transactions || [],
-            currentUser: data.currentUser || 'Builder Pro User',
-            userPhone: data.userPhone || ''
-        }
-    };
-
-    const blob = new Blob([JSON.stringify(exportData, null, 2)], { type: 'application/json' });
-    const url = URL.createObjectURL(blob);
-    const a = document.createElement('a');
-    a.href = url;
-    a.download = `builder-pro-trial-${Date.now()}.json`;
-    document.body.appendChild(a);
-    a.click();
-    document.body.removeChild(a);
-    URL.revokeObjectURL(url);
-
-    const projectCount = exportData.data.projects.length;
-    const taskCount = exportData.data.tasks.length;
-    const transCount = exportData.data.transactions.length;
-
-    showToast(`✅ Data exported!\n${projectCount} projects, ${taskCount} tasks, ${transCount} transactions saved!`, 5000);
-}
-
-// Initialize trial when page loads
-const originalDOMContentLoaded = document.addEventListener('DOMContentLoaded', () => {});
-document.addEventListener('DOMContentLoaded', () => {
-    initTrial();
-});
-
-// Warn before leaving
-window.addEventListener('beforeunload', (e) => {
-    if (data.projects.length > 0 || data.tasks.length > 0) {
-        e.preventDefault();
-        e.returnValue = '⚠️ Export your data before leaving!';
-        return e.returnValue;
-    }
-});
     </script>
 </body>
 </html>
