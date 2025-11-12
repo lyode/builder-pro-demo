@@ -1757,9 +1757,71 @@
                 font-size: calc(28px * var(--font-scale));
             }
         }
+        /* Trial Timer Animations */
+@keyframes pulse {
+    0%, 100% { transform: scale(1); opacity: 1; }
+    50% { transform: scale(1.1); opacity: 0.8; }
+}
+
+@keyframes blink {
+    0%, 50% { opacity: 1; }
+    51%, 100% { opacity: 0.3; }
+}
+
+.timer-warning {
+    animation: blink 1s infinite !important;
+    color: #ff4444 !important;
+}
     </style>
 </head>
 <body>
+    <!-- Demo Timer Banner -->
+<div style="position: fixed; top: 0; left: 0; right: 0; background: linear-gradient(135deg, #667eea, #764ba2); color: white; padding: 12px 20px; z-index: 10001; box-shadow: 0 4px 12px rgba(0,0,0,0.3); display: flex; justify-content: space-between; align-items: center; font-family: 'Inter', sans-serif;">
+    <div style="display: flex; align-items: center; gap: 12px;">
+        <span style="font-size: 20px; animation: pulse 2s infinite;">⏰</span>
+        <span style="font-size: 20px; font-weight: 700; font-family: 'Courier New', monospace; letter-spacing: 2px;" id="timerDisplay">15:00</span>
+        <span style="font-size: 14px; font-weight: 600; opacity: 0.95;">FREE TRIAL</span>
+    </div>
+    <button onclick="exportTrialData()" style="background: white; color: #667eea; padding: 8px 16px; border-radius: 20px; border: none; font-weight: 700; font-size: 13px; cursor: pointer; transition: all 0.3s; box-shadow: 0 2px 8px rgba(0,0,0,0.2);">
+        💾 Export Data
+    </button>
+</div>
+
+<!-- Trial Notice -->
+<div style="margin-top: 50px; background: linear-gradient(135deg, rgba(255,243,205,0.95), rgba(255,230,156,0.95)); padding: 15px 20px; border-bottom: 3px solid #ffc107;">
+    <div style="max-width: 1400px; margin: 0 auto;">
+        <h3 style="color: #856404; font-size: 16px; margin-bottom: 8px; display: flex; align-items: center; gap: 8px;">
+            <span>🎯</span> Welcome to Builder Pro FREE Trial!
+        </h3>
+        <ul style="margin: 0; padding-left: 20px; color: #856404; font-size: 13px; line-height: 1.8;">
+            <li>✅ Full access to ALL features for 15 minutes</li>
+            <li>📊 Add unlimited projects, tasks, expenses & income</li>
+            <li>💾 <strong>IMPORTANT:</strong> Export your data before trial ends</li>
+            <li>📥 Import your data later after purchasing full version</li>
+        </ul>
+    </div>
+</div>
+
+<!-- Trial Expired Overlay -->
+<div id="trialExpiredOverlay" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.95); z-index: 10002; align-items: center; justify-content: center; padding: 20px;">
+    <div style="background: white; padding: 40px 30px; border-radius: 20px; text-align: center; max-width: 450px; width: 90%; box-shadow: 0 20px 60px rgba(0,0,0,0.5);">
+        <div style="font-size: 72px; margin-bottom: 20px; animation: pulse 2s infinite;">⏰</div>
+        <h2 style="font-size: 32px; margin-bottom: 15px; color: #667eea; font-weight: 800;">Trial Expired!</h2>
+        <p style="margin-bottom: 25px; color: #666; line-height: 1.8; font-size: 16px;">
+            Your 15-minute trial has ended. <strong>Don't lose your work!</strong><br>
+            Export your data now and import it later after purchase.
+        </p>
+        <button onclick="exportTrialData()" style="background: linear-gradient(135deg, #51cf66, #37b24d); color: white; padding: 16px 40px; border-radius: 25px; border: none; font-weight: 700; font-size: 17px; cursor: pointer; width: 100%; margin-bottom: 15px; transition: all 0.3s; box-shadow: 0 4px 15px rgba(81,207,102,0.4);">
+            💾 Export My Data First
+        </button>
+        <a href="https://lyode.github.io/refitinterior/#products" style="display: block; background: linear-gradient(135deg, #667eea, #764ba2); color: white; padding: 16px 40px; border-radius: 25px; text-decoration: none; font-weight: 700; font-size: 17px; transition: all 0.3s; box-shadow: 0 4px 15px rgba(102,126,234,0.4);">
+            Purchase Full Version - RM299 →
+        </a>
+        <p style="margin-top: 20px; font-size: 13px; color: #999;">
+            Lifetime access • Free updates • Email support
+        </p>
+    </div>
+</div>
     <div class="pull-to-refresh" id="pullToRefresh">🔄</div>
 
     <div class="login-screen" id="loginScreen">
@@ -3409,6 +3471,135 @@
                 showToast('❌ Clear cancelled - must type "DELETE"');
             }
         }
+        // ========================================
+// === 15-MINUTE TRIAL SYSTEM ===
+// ========================================
+
+const TRIAL_DURATION = 15 * 60 * 1000; // 15 minutes
+let trialStartTime = null;
+let timerInterval = null;
+
+function initTrial() {
+    const savedStartTime = localStorage.getItem('demoTrialStartTime');
+    
+    if (savedStartTime) {
+        trialStartTime = parseInt(savedStartTime);
+        const elapsed = Date.now() - trialStartTime;
+        
+        if (elapsed >= TRIAL_DURATION) {
+            showTrialExpired();
+            return;
+        }
+    } else {
+        trialStartTime = Date.now();
+        localStorage.setItem('demoTrialStartTime', trialStartTime);
+    }
+    
+    startTimer();
+    
+    // Show welcome message
+    setTimeout(() => {
+        showToast('👋 Welcome! 15 minutes to try everything. Export your data before time ends!', 6000);
+    }, 2000);
+}
+
+function startTimer() {
+    updateTimerDisplay();
+    timerInterval = setInterval(updateTimerDisplay, 1000);
+}
+
+function updateTimerDisplay() {
+    const elapsed = Date.now() - trialStartTime;
+    const remaining = TRIAL_DURATION - elapsed;
+
+    if (remaining <= 0) {
+        clearInterval(timerInterval);
+        showTrialExpired();
+        return;
+    }
+
+    const minutes = Math.floor(remaining / 60000);
+    const seconds = Math.floor((remaining % 60000) / 1000);
+    const display = `${minutes}:${seconds.toString().padStart(2, '0')}`;
+    
+    const timerEl = document.getElementById('timerDisplay');
+    if (timerEl) {
+        timerEl.textContent = display;
+        if (remaining < 180000) {
+            timerEl.classList.add('timer-warning');
+        }
+    }
+
+    // Warnings
+    if (remaining === 300000) {
+        showToast('⚠️ 5 minutes remaining! Export your data soon.', 5000);
+    } else if (remaining === 120000) {
+        showToast('⚠️ Only 2 minutes left! Export your data now!', 5000);
+    } else if (remaining === 60000) {
+        showToast('🚨 LAST MINUTE! Export your data immediately!', 8000);
+    }
+}
+
+function showTrialExpired() {
+    document.getElementById('trialExpiredOverlay').style.display = 'flex';
+    
+    // Disable interaction
+    document.querySelectorAll('.fab, .btn-primary, .action-btn, .neuro-btn').forEach(btn => {
+        if (!btn.onclick || !btn.onclick.toString().includes('export')) {
+            btn.disabled = true;
+            btn.style.opacity = '0.5';
+            btn.style.cursor = 'not-allowed';
+        }
+    });
+}
+
+function exportTrialData() {
+    const exportData = {
+        version: '1.0',
+        appName: 'Builder Pro',
+        exportDate: new Date().toISOString(),
+        exportType: 'trial',
+        message: 'Import this file after purchasing Builder Pro to restore your data!',
+        data: {
+            projects: data.projects || [],
+            tasks: data.tasks || [],
+            transactions: data.transactions || [],
+            currentUser: data.currentUser || 'Builder Pro User',
+            userPhone: data.userPhone || ''
+        }
+    };
+
+    const blob = new Blob([JSON.stringify(exportData, null, 2)], { type: 'application/json' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = `builder-pro-trial-${Date.now()}.json`;
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+
+    const projectCount = exportData.data.projects.length;
+    const taskCount = exportData.data.tasks.length;
+    const transCount = exportData.data.transactions.length;
+
+    showToast(`✅ Data exported!\n${projectCount} projects, ${taskCount} tasks, ${transCount} transactions saved!`, 5000);
+}
+
+// Initialize trial when page loads
+const originalDOMContentLoaded = document.addEventListener('DOMContentLoaded', () => {});
+document.addEventListener('DOMContentLoaded', () => {
+    initTrial();
+});
+
+// Warn before leaving
+window.addEventListener('beforeunload', (e) => {
+    if (data.projects.length > 0 || data.tasks.length > 0) {
+        e.preventDefault();
+        e.returnValue = '⚠️ Export your data before leaving!';
+        return e.returnValue;
+    }
+});
     </script>
 </body>
 </html>
