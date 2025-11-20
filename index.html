@@ -1264,7 +1264,7 @@
     <div style="position: fixed; top: 0; left: 0; right: 0; background: linear-gradient(135deg, #667eea, #764ba2); color: white; padding: 12px 20px; z-index: 10001; box-shadow: 0 4px 12px rgba(0,0,0,0.3); display: flex; justify-content: space-between; align-items: center; font-family: 'Inter', sans-serif;">
         <div style="display: flex; align-items: center; gap: 12px;">
             <span style="font-size: 20px; animation: pulse 2s infinite;">⏰</span>
-            <span style="font-size: 20px; font-weight: 700; font-family: 'Courier New', monospace; letter-spacing: 2px;" id="timerDisplay">15:00</span>
+            <span style="font-size: 20px; font-weight: 700; font-family: 'Courier New', monospace; letter-spacing: 2px;" id="timerDisplay">24:00:00</span>
             <span style="font-size: 14px; font-weight: 600; opacity: 0.95;">FREE TRIAL</span>
         </div>
         <button onclick="exportTrialData()" style="background: white; color: #667eea; padding: 8px 16px; border-radius: 20px; border: none; font-weight: 700; font-size: 13px; cursor: pointer; transition: all 0.3s; box-shadow: 0 2px 8px rgba(0,0,0,0.2);">
@@ -1822,7 +1822,7 @@
         let editingId = null;
         let editingType = null;
 
-        const TRIAL_DURATION = 15 * 60 * 1000; // 15 minutes
+        const TRIAL_DURATION = 24 * 60 * 60 * 1000; // 15 minutes
         let trialStartTime = null;
         let timerInterval = null;
 
@@ -1865,43 +1865,38 @@
             }, 2000);
         }
 
-        function startTimer() {
-            updateTimerDisplay();
-            timerInterval = setInterval(updateTimerDisplay, 1000);
-        }
-
         function updateTimerDisplay() {
-            const elapsed = Date.now() - trialStartTime;
-            const remaining = TRIAL_DURATION - elapsed;
+    const elapsed = Date.now() - trialStartTime;
+    const remaining = TRIAL_DURATION - elapsed;
 
-            if (remaining <= 0) {
-                clearInterval(timerInterval);
-                showTrialExpired();
-                return;
-            }
+    if (remaining <= 0) {
+        clearInterval(timerInterval);
+        showTrialExpired();
+        return;
+    }
 
-            const minutes = Math.floor(remaining / 60000);
-            const seconds = Math.floor((remaining % 60000) / 1000);
-            const display = `${minutes}:${seconds.toString().padStart(2, '0')}`;
-            
-            const timerEl = document.getElementById('timerDisplay');
-            if (timerEl) {
-                timerEl.textContent = display;
-                if (remaining < 180000) {
-                    timerEl.classList.add('timer-warning');
-                }
-            }
-
-            // Warnings
-            if (remaining === 300000) {
-                showToast('⚠️ 5 minutes remaining! Export your data soon.', 5000);
-            } else if (remaining === 120000) {
-                showToast('⚠️ Only 2 minutes left! Export your data now!', 5000);
-            } else if (remaining === 60000) {
-                showToast('🚨 LAST MINUTE! Export your data immediately!', 8000);
-            }
+    const hours = Math.floor(remaining / 3600000);
+    const minutes = Math.floor((remaining % 3600000) / 60000);
+    const seconds = Math.floor((remaining % 60000) / 1000);
+    const display = `${hours}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+    
+    const timerEl = document.getElementById('timerDisplay');
+    if (timerEl) {
+        timerEl.textContent = display;
+        if (remaining < 3600000) { // Warning when less than 1 hour
+            timerEl.classList.add('timer-warning');
         }
+    }
 
+    // Warnings - update for 24 hour period
+    if (remaining === 3600000) { // 1 hour left
+        showToast('⚠️ 1 hour remaining! Export your data soon.', 5000);
+    } else if (remaining === 1800000) { // 30 min left
+        showToast('⚠️ Only 30 minutes left! Export your data now!', 5000);
+    } else if (remaining === 300000) { // 5 min left
+        showToast('🚨 LAST 5 MINUTES! Export your data immediately!', 8000);
+    }
+}
         function showTrialExpired() {
             document.getElementById('trialExpiredOverlay').style.display = 'flex';
             
